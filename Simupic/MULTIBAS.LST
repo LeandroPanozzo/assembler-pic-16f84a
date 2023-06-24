@@ -1,0 +1,58 @@
+MPASM 02.30 Released         MULTIBAS.ASM   11-15-2012  11:08:18         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                    00001         List    p=16c84
+  0000002A          00002 op1     EQU     0x2A
+  0000002C          00003 op2     EQU     0x2c
+  0000002F          00004 resul   EQU     0X2F
+  00000003          00005 estado  equ     0x03
+                    00006 
+0000                00007         ORG     0x00
+0000 01AF           00008         clrf    resul 
+0001 3005           00009         movlw   0x05
+0002 00AA           00010         movwf   op1     ; mueve w a l op1
+0003 3003           00011         movlw   0x03
+0004 00AC           00012         movwf   op2
+0005 08AC           00013         movf    op2,1
+0006 1903           00014         btfsc   estado, 2
+0007 280D           00015         goto    fin
+0008 0103           00016         clrw
+0009 072A           00017 bucle   addwf   op1,0
+000A 0BAC           00018         decfsz  op2,1
+000B 2809           00019         goto    bucle
+000C 00AF           00020         movwf   resul
+000D 0000           00021 fin     nop
+                    00022         end
+MPASM 02.30 Released         MULTIBAS.ASM   11-15-2012  11:08:18         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16C84                           00000001
+bucle                             00000009
+estado                            00000003
+fin                               0000000D
+op1                               0000002A
+op2                               0000002C
+resul                             0000002F
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXX-- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    14
+Program Memory Words Free:  1010
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

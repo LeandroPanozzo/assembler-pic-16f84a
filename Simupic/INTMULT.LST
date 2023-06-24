@@ -1,0 +1,58 @@
+MPASM 02.30 Released          INTMULT.ASM   11-19-2012  12:05:49         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                    00001         list p=16c84
+  00000000          00002 indf equ 0x00
+  00000004          00003 fsr  equ 0x04
+  00000003          00004 estado equ 0x03
+  0000000C          00005 contador equ 0x0c
+  0000000D          00006 iterador equ    0x0d
+                    00007 
+0000                00008         org 0x00
+                    00009 
+0000 3010           00010         movlw 0x10  ; jhdfkerhgldhk
+0001 008D           00011         movwf iterador
+0002 3020           00012         movlw 0x20
+0003 0084           00013         movwf fsr
+0004 018C           00014         clrf  contador
+0005 0800           00015 blucle  movf  indf,0
+0006 3903           00016         andlw 0x03
+0007 1903           00017         btfsc estado,2
+0008 0A8C           00018         incf contador,1
+0009 0A84           00019         incf fsr,1
+000A 0B8D           00020         decfsz iterador,1
+000B 2805           00021         goto blucle
+                    00022         end
+MPASM 02.30 Released          INTMULT.ASM   11-19-2012  12:05:49         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16C84                           00000001
+blucle                            00000005
+contador                          0000000C
+estado                            00000003
+fsr                               00000004
+indf                              00000000
+iterador                          0000000D
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXX---- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    12
+Program Memory Words Free:  1012
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

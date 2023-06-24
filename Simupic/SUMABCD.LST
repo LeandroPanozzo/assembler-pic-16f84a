@@ -1,0 +1,49 @@
+MPASM 02.30 Released          SUMABCD.ASM   11-19-2012  12:57:24         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                    00001         LIST p=16c84
+  0000000C          00002 op1     equ     0x0c
+  0000000D          00003 op2     equ     0x0d
+  0000000E          00004 result  equ     0X0E
+  00000003          00005 estado  equ     0x03
+                    00006 
+0000                00007         ORG 0X00
+0000 080C           00008         movf    op1,0
+0001 070D           00009         addwf   op2,0
+0002 008E           00010         movwf   result
+0003 3E06           00011         addlw   0x06
+0004 00AF           00012         movwf   0x2f
+0005 1A2F           00013         btfsc   0x2f,4
+0006 008E           00014         movwf   result
+                    00015         end
+MPASM 02.30 Released          SUMABCD.ASM   11-19-2012  12:57:24         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16C84                           00000001
+estado                            00000003
+op1                               0000000C
+op2                               0000000D
+result                            0000000E
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXX--------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:     7
+Program Memory Words Free:  1017
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

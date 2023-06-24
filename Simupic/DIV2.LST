@@ -1,0 +1,75 @@
+MPASM 02.30 Released             DIV2.ASM   6-1-2012  19:53:42         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                    00001 ;------------CONSIGNA-----------------------------
+                    00002 ;Realizar la divisi¢n entera entre (0x2A)/(0x2B)
+                    00003 ;Almacenar el Cociente en 0x2C
+                    00004 ;y el Resto en 0x2D
+                    00005 ;NOTA: Se va a contemplar que el divisor sea distinto de cero
+                    00006 ;-------------------------------------------------
+                    00007         LIST    p=16c84;
+                    00008 
+  0000002A          00009 opa     EQU     0x2A; dividendo
+  0000002B          00010 opb     EQU     0x2B; divisor
+  0000002C          00011 c       EQU     0x2C; Cociente
+  0000002D          00012 r       EQU     0x2D; Resto
+  00000003          00013 est     EQU     0x03; Registro de estado
+                    00014 
+                    00015 
+                    00016 
+0000                00017         ORG     0x00;
+                    00018 
+                    00019                     ;**********************************************
+0000 300A           00020         movlw   0x0A;* En ‚stas lineas solo cargo datos en las    *
+0001 00AA           00021         movwf   opa; * posiciones de memoria para dar un ejemplo  *
+0002 3004           00022         movlw   0x04;* r pido del funcionamiento del programa.    *
+0003 00AB           00023         movwf   opb; **********************************************
+                    00024 
+0004 01AC           00025         clrf    c;   Pongo a cero la variable que va a llevar el cociente
+0005 082A           00026         movf    opa,0; muevo opa para verificar si es cero
+0006 1903           00027         btfsc   est,2; verifica si el dividendo es cero probando bit de est 2
+0007 280F           00028         goto    fin_0; si es cero va a saltar al final dejando c=0 
+0008 082B           00029         movf    opb,0; W<-(opb)
+0009 02AA           00030 seguir  subwf   opa,1; Resta (opa)-(W)
+000A 1C03           00031         btfss   est,0; prueba si no es negativo el resultado
+000B 280E           00032         goto    fin; si daba negativo (Carry=0) entraba en el salto al fin
+000C 0AAC           00033         incf    c,1; Si Carry=1 no dio resultado negativo, entonces incrementa 
+000D 2809           00034         goto    seguir; Una vez incrementado, sigue operando.
+000E 072A           00035 fin     addwf   opa,0; Si daba negativo debe restaurar el resto
+000F 00AD           00036 fin_0   movwf   r; guarda el resto en la variable que se ped¡a.
+                    00037         end
+MPASM 02.30 Released             DIV2.ASM   6-1-2012  19:53:42         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16C84                           00000001
+c                                 0000002C
+est                               00000003
+fin                               0000000E
+fin_0                             0000000F
+opa                               0000002A
+opb                               0000002B
+r                                 0000002D
+seguir                            00000009
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    16
+Program Memory Words Free:  1008
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

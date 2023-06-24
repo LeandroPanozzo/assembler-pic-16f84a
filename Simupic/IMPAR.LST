@@ -1,0 +1,54 @@
+MPASM 02.30 Released            IMPAR.ASM   11-19-2012  11:43:50         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                    00001 ;--------CONSIGNA-------------------------------------
+                    00002 ;Recorrer el intervalo comprendido entre [10;18]
+                    00003 ;y a los contenidos de las posiciones de memoria impares,
+                    00004 ; desplazarlos un bit a la derecha
+                    00005 ;-----------------------------------------------------
+                    00006         List    p=16c84
+  0000002A          00007 con     EQU     0x2A
+  00000004          00008 fsr     EQU     0x04
+                    00009 
+0000                00010         ORG     0x00
+0000 3009           00011         movlw   0x09
+0001 00AA           00012         movwf   con
+0002 3010           00013         movlw   0x10
+0003 0084           00014         movwf   fsr
+                    00015 
+0004 1804           00016 seguir  btfsc   fsr,0
+0005 0C80           00017         rrf     0x00,1
+0006 0A84           00018         incf    fsr,1
+0007 0BAA           00019         decfsz  con,1
+0008 2804           00020         goto    seguir
+                    00021         end
+MPASM 02.30 Released            IMPAR.ASM   11-19-2012  11:43:50         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16C84                           00000001
+con                               0000002A
+fsr                               00000004
+seguir                            00000004
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXX------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:     9
+Program Memory Words Free:  1015
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

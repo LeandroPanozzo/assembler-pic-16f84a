@@ -1,0 +1,70 @@
+MPASM 02.30 Released              DIV.ASM   6-5-2012  11:43:27         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                    00001 ;------------CONSIGNA-----------------------------
+                    00002 ;Realizar la divisi¢n entera entre (0x2A)/(0x2B)
+                    00003 ;Almacenar el Cociente en 0x2C
+                    00004 ;y el Resto en 0x2D
+                    00005 ;-------------------------------------------------
+                    00006         LIST    p=16c84;
+                    00007 
+  0000002A          00008 opa     EQU     0x2A; numerador
+  0000002B          00009 opb     EQU     0x2B; denominador
+  0000002C          00010 c       EQU     0x2C; Cociente
+  0000002D          00011 r       EQU     0x2D; Resto
+  00000003          00012 est     EQU     0x03; Registro de estado
+                    00013 
+                    00014 
+                    00015 
+0000                00016         ORG     0x00;
+                    00017 
+                    00018        
+0000 3009           00019         movlw   0x09;
+0001 00AA           00020         movwf   opa;
+0002 3004           00021         movlw   0x04;
+0003 00AB           00022         movwf   opb;
+                    00023 
+0004 01AC           00024         clrf    c;
+0005 082B           00025         movf    opb,0;
+0006 02AA           00026 seguir  subwf   opa,1;
+0007 1C03           00027         btfss   est,0;
+0008 280B           00028         goto    fin;
+0009 0AAC           00029         incf    c,1;
+000A 2806           00030         goto    seguir;
+000B 072A           00031 fin     addwf   opa,0;
+000C 00AD           00032         movwf   r;
+                    00033         end
+MPASM 02.30 Released              DIV.ASM   6-5-2012  11:43:27         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16C84                           00000001
+c                                 0000002C
+est                               00000003
+fin                               0000000B
+opa                               0000002A
+opb                               0000002B
+r                                 0000002D
+seguir                            00000006
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXX--- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    13
+Program Memory Words Free:  1011
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

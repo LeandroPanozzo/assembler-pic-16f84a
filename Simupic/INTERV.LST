@@ -1,0 +1,61 @@
+MPASM 02.30 Released           INTERV.ASM   11-16-2012  18:03:38         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                    00001 ;---------------------Consigna-------------------------------
+                    00002 ;Dado el intervalo de memoria comprendido entre [0x20;0x29].
+                    00003 ;Al contenido de cada posici¢n (considerando extremos)
+                    00004 ;decrementarlo en una unidad.
+                    00005 ;-------------------------------------------------------------
+                    00006         List    p=16c84
+                    00007 
+                    00008 ;---------ZONA DE ETIQUETAS-----------------------------------
+                    00009 
+                    00010 
+  00000004          00011 fsr     EQU     0x04;Registro FSR
+  0000002A          00012 con     EQU     0x2A;en esta direcci¢n se usar  como
+                    00013                     ;control para terminar el
+                    00014                     ;recorrido del intervalo.
+                    00015 
+                    00016 ;---------PROGRAMA--------------------------------------------
+                    00017 
+0000                00018         ORG     0x00
+                    00019 
+0000 300A           00020         movlw   0x0A
+0001 00AA           00021         movwf   con
+0002 3020           00022         movlw   0x20
+0003 0084           00023         movwf   fsr
+0004 0380           00024 seguir  decf    0x00,1; Direccionamiento indirecto a la dir que est  en FSR
+0005 0A84           00025         incf    fsr,1; Hago que el FSR "apunte" a la siguiente posici¢n
+0006 0BAA           00026         decfsz  con,1; decremento mi variable de control de recorrido (salto si es cero)
+0007 2804           00027         goto    seguir;Si quedan dirs que tratar, salto a seguir tratando.
+                    00028         end
+MPASM 02.30 Released           INTERV.ASM   11-16-2012  18:03:38         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16C84                           00000001
+con                               0000002A
+fsr                               00000004
+seguir                            00000004
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXX-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:     8
+Program Memory Words Free:  1016
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

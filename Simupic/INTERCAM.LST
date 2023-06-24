@@ -1,0 +1,60 @@
+MPASM 02.30 Released         INTERCAM.ASM   6-1-2011  22:45:58         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                    00001 ;------------CONSIGNA---------------------------------------------
+                    00002 ;-----------------------------------------------------------------
+                    00003 ; Intercambiar entre las direcciones                             |
+                    00004 ;0x10 y 0x21 sus contenidos respectivos                          |
+                    00005 ;                                                                |
+                    00006 ;-----------------------------------------------------------------
+                    00007         LIST    p=16c84; especifica el modelo de microcontrolador|
+                    00008 ;-----------Zona de Etiquetas-------------------------------------
+                    00009 ;                                                                |
+  00000010          00010 dir1    EQU     0x10; etiqueta para la direcci¢n de memoria 0x10 |
+  00000021          00011 dir2    EQU     0x21;    "      "    "    "      "    "     0x21 |
+  0000000C          00012 resg    EQU     0x0c; direcci¢n de resguardo para el intercambio |
+                    00013 ;                                                                |
+                    00014 ;-----------C¢digo del programa-----------------------------------
+                    00015 
+                    00016 
+0000                00017         ORG     0x00; Indica al ensamblador donde situar la siguiente
+                    00018                     ; instrucci¢n en la memoria de programa
+                    00019 
+0000 0810           00020         movf    dir1,0; cargo en el reg W el contenido de la dir 0x10
+0001 008C           00021         movwf   resg  ; muevo al espacio de resguardo el contenido del reg W
+0002 0821           00022         movf    dir2,0; cargo en el reg W el contenido de la dir 0x21
+0003 0090           00023         movwf   dir1  ; muevo lo que tengo en el acumulador a 0x10
+0004 080C           00024         movf    resg,0; traigo lo que resguard‚ del contenido original
+                    00025                       ; de 0x10 al acumulador para luego pasarlo a 0x21
+0005 00A1           00026         movwf   dir2  ; cargo en la direcci¢n 0x21 el contenido del reg W
+                    00027         end
+MPASM 02.30 Released         INTERCAM.ASM   6-1-2011  22:45:58         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16C84                           00000001
+dir1                              00000010
+dir2                              00000021
+resg                              0000000C
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXX---------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:     6
+Program Memory Words Free:  1018
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

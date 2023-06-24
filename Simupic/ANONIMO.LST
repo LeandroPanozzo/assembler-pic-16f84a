@@ -1,0 +1,31 @@
+MPASM 02.30 Released          ANONIMO.ASM   6-24-2023  10:17:29         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                    00001 
+Error[125]  : Illegal condition (EOF encountered before END or conditional end directive)
+Error[131]  : Processor type is undefined
+MPASM 02.30 Released          ANONIMO.ASM   6-24-2023  10:17:29         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+
+All other memory blocks unused.
+
+Program Memory Words Used:     0
+Program Memory Words Free:     1
+
+
+Errors   :     2
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

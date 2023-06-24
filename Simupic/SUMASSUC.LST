@@ -1,0 +1,63 @@
+MPASM 02.30 Released         SUMASSUC.ASM   5-21-2023  11:08:57         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                    00001 ;----------------------------suma de direcciones-----------------------------
+                    00002 ;realizar un programa que permita sumar el contenido de las siguientes dir
+                    00003 ;2Ah, 2Bh, 2Ch y 2Dh guardando el resultado en 0Dh
+                    00004 ;----------------------------------------------------------------------------
+                    00005 ;-------------------Especificacion del microcontrolador----------------------
+                    00006         List    p=16f84;
+                    00007 ;----------------------------------------------------------------------------
+                    00008 ;-------------------------------Asignaciones---------------------------------
+  0000002A          00009 Dir1    EQU     0x2A;
+  0000002B          00010 Dir2    EQU     0x2B;
+  0000002C          00011 Dir3    EQU     0x2C;
+  0000002D          00012 Dir4    EQU     0x2D;
+  0000000D          00013 Resu    EQU     0x0D;
+                    00014 ;----------------------------------------------------------------------------
+0000                00015         ORG     0x00;
+0000 3000           00016         movlw   0x00;limpio el registro w poniendo 0
+0001 008D           00017         movwf   Resu; guardo el 0 en la direccion de memoria resu
+0002 3000           00018         movlw   0x00;Cargo 0 en w
+Message[305]: Using default destination of 1 (file).
+0003 07AA           00019         addwf   0x2A;sumo el valor de Dir1 en el registro w
+Message[305]: Using default destination of 1 (file).
+0004 07AB           00020         addwf   0x2B;
+Message[305]: Using default destination of 1 (file).
+0005 07AC           00021         addwf   0x2C;
+Message[305]: Using default destination of 1 (file).
+0006 078D           00022         addwf   0x0D;
+0007 008D           00023         movwf   Resu;guardo el resultado que estaba en w en resu
+                    00024         end
+MPASM 02.30 Released         SUMASSUC.ASM   5-21-2023  11:08:57         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+Dir1                              0000002A
+Dir2                              0000002B
+Dir3                              0000002C
+Dir4                              0000002D
+Resu                              0000000D
+__16F84                           00000001
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXX-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:     8
+Program Memory Words Free:  1016
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     4 reported,     0 suppressed
+
+

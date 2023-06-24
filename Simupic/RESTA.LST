@@ -1,0 +1,54 @@
+MPASM 02.30 Released            RESTA.ASM   11-24-2011  11:44:55         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                    00001         LIST    p=16c84; Especifica modelo de microcontrolador
+                    00002 
+                    00003 ;---------------------------------------------------------------
+  0000000C          00004 op1     equ     0x0c;
+  0000000D          00005 op2     equ     0x0d;
+  00000003          00006 est     equ     0x03; registro de estados
+  0000000E          00007 resu    equ     0x0e; posici¢n de memoria para guardar resultado
+                    00008 ;----------------------------------------------------------------
+                    00009 ;vamos a hacer op2 - op1 y solo si da un n£mero positivo el programa
+                    00010 ;almacenar  el resultado en la posici¢n 0x0e
+                    00011 ;---------------------------------------------------------------
+0000                00012         ORG     0x00;
+                    00013         
+Warning[207]: Found label after column 1. (mov)
+Error[122]  : Illegal opcode (op1)
+                    00014         mov    op1,0;
+0000 020D           00015         subwf   op2,0;
+0001 1803           00016         btfsc   est,0;
+0002 008E           00017         movwf   resu;
+                    00018         end;
+MPASM 02.30 Released            RESTA.ASM   11-24-2011  11:44:55         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16C84                           00000001
+est                               00000003
+op1                               0000000C
+op2                               0000000D
+resu                              0000000E
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXX------------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:     3
+Program Memory Words Free:  1021
+
+
+Errors   :     1
+Warnings :     1 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

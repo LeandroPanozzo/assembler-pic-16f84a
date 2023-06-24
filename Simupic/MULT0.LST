@@ -1,0 +1,80 @@
+MPASM 02.30 Released            MULT0.ASM   6-1-2012  22:37:20         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                    00001 ;---------CONSIGNA----------------------------
+                    00002 ;Multiplicar un n£mero de la dir 0x10 por otro que est  en 0x11
+                    00003 ;y guardarlo en la £ltima direcci¢n de memoria
+                    00004 ;---------------------------------------------
+                    00005 
+                    00006         List    p=16c84; especifica el modelo de microcontrolador
+                    00007 
+                    00008 ;--------ZONA DE ETIQUETAS-------------------------------------
+  00000011          00009 mult    EQU     0x11;direcci¢n del multiplicador
+  00000010          00010 dirN    EQU     0x10;direcci¢n donde est  guardado el n£mero a multiplicar
+  0000002F          00011 resu    EQU     0x2f;direcci¢n donde se guardar  el resultado
+  00000012          00012 conMult EQU     0x12;dir donde se guardar  la cantidad de veces
+                    00013                     ;que tengo que sumar
+  00000003          00014 est     EQU     0x03; registro de estado
+                    00015 ;--------------------------------------------------------------
+                    00016 
+0000                00017         ORG     0x00
+0000 3003           00018         movlw   0x03;
+0001 0090           00019         movwf   dirN;
+0002 3001           00020         movlw   0x01;
+0003 0091           00021         movwf   mult;
+                    00022         
+                    00023 
+0004 01AF           00024         clrf    resu; pongo a cero la variable resultado por si la operación da cero al detectar el mult=0
+0005 0811           00025         movf    mult,0; cargo el reg W con el multiplicador para verificar si es cero
+0006 1903           00026         btfsc   est,2; verifico si es cero el valor del multiplicador, si es cero salto al final y dejo en
+                           cero el result
+0007 2813           00027         goto    fin_0
+0008 0810           00028         movf    dirN,0
+0009 0B91           00029         decfsz  mult,1; Decremento y detecto si queda en cero por si era igual a 1 para que no haga sumas
+000A 280C           00030         goto    noes1;
+000B 2812           00031         goto    fin;
+000C 0811           00032 noes1   movf    mult,0;
+000D 0092           00033         movwf   conMult; muevo literal que est  en reg W hacia 0x12
+000E 0810           00034         movf    dirN,0; el n£mero q est  en la dir 0x10 lo cargo al reg W
+000F 0710           00035 seguir  addwf   dirN,0; sumo el (W) con el (0x10)
+0010 0B92           00036         decfsz  conMult,1; decremento mi indicador para la multiplicaci¢n
+0011 280F           00037         goto    seguir; Salto a la instrucci¢n para 'seguir' sumando
+0012 00AF           00038 fin     movwf   resu; muevo el resultado que est  en el reg W a 0x2F
+0013 0000           00039 fin_0   nop
+                    00040         end
+MPASM 02.30 Released            MULT0.ASM   6-1-2012  22:37:20         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16C84                           00000001
+conMult                           00000012
+dirN                              00000010
+est                               00000003
+fin                               00000012
+fin_0                             00000013
+mult                              00000011
+noes1                             0000000C
+resu                              0000002F
+seguir                            0000000F
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXX------------ ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    20
+Program Memory Words Free:  1004
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

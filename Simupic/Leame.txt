@@ -1,0 +1,414 @@
+SIMUPIC'84 v 1.1: Manual de uso
+                                                                                   
+                                                           
+
+INTRODUCCIàN
+
+
+
+  Simupic  es  un  programa que simula un  microcontrolador
+  PIC16C84  de  la  casa Microchip. Esto quiere  decir  que
+  mediante  este  programa se pueden desarrollar  programas
+  para  este  tipo  de  CPU y probarlos c¢modamente  y  sin
+  necesidad  de  grabar un chip real, con lo  que  se  gana
+  tiempo y dinero.
+  
+  La  simulaci¢n le permitir  utilizar su software  en  una
+  CPU   simulada,  con  la  ventaja  de  poder  trazar  sus
+  programas,  establecer puntos de ruptura y  ver  como  la
+  memoria  RAM  del  PIC  va  modific ndose  din micamente.
+  SIMUPIC,  adem s le permitir  tener una visi¢n  clara  de
+  las  se¤ales  que  el chip saca por sus salidas  en  todo
+  momento.
+  
+
+
+INSTALACIàN Y EJECUCIàN DEL PROGRAMA
+
+
+
+  ú   Instalaci¢n :
+       
+     Para   instalar Sim84 en el disco  duro  se  debe
+     ejecutar el fichero Instalar.bat que acompa¤a  al
+     simulador.  Este programa instalar  en  el  disco
+     duro  el  Sim84 junto con el ensamblador Mpasm  y
+     algunos programas de ejemplo. Sin  argumentos, el
+     programa  instalar.bat  asumir   que el disco  de
+     instalaci¢n se encuentra en la unidad A: y que el
+     directorio de destino es C:\SIM84,  sin  embargo,
+     si lo desea puede  especificar  estos  par metros
+     manualmente:
+
+        ejemplo: INSTALAR B: D:\SIM84
+
+        instala el programa en el directorio SIM84 de
+        la unidad D partiendo  de un  disco insertado
+        en la unidad B
+
+     El  editor  y  el  ensablador utilizados  son  el
+     edit.com  del DOS y el Mpasm respectivamente.  Si
+     se  desea  utilizar otro software este se  ha  de
+     especificar   en  el  fichero  de   configuraci¢n
+     Simupic.cfg.
+     
+     La  estructura  del  fichero  Simupic.cfg  es  la
+     siguiente :
+     
+     Editor= 'RUTA_Y_NOMBRE_DEL_EDITOR"
+       
+     Ensamblador= 'RUTA_Y_NOMBRE _DEL_ENSAMBLADOR'
+       
+                             
+
+  ú   Ejecuci¢n :
+     
+     Para ejecutar el Simupic 84 basta con  teclear en
+     el directorio Sim84 : Sim84 e <Intro> .
+     
+
+
+LA VENTANA DE  MENé PRINCIPAL
+
+  
+  
+  Las   opciones   que  presenta  esta  ventana   son   las
+  siguientes :
+  
+     1)Asignar nombre
+     2)Llamar al editor
+     3)Ensamblar
+     4)Cargar fichero HEX
+     5)Opciones de simulaci¢n
+     6)Ejecutar
+     7)Trazar
+     8)Visualizar Registros
+     9)  Alterar registros
+     ESC) Salida al DOS
+     
+                             
+
+
+Estas  opciones pueden ser seleccionadas posicionando sobre
+ellas  mediante  los  cursores  las  barra   sombreada    y
+pulsando  <Intro>  ,  mediante el rat¢n  o  con  el  n£mero
+asignado a cada una de ellas.
+
+  A  continuaci¢n  se   explican  las  diferentes  opciones
+  detalladamente:
+  
+     1)Asignar Nombre:
+       
+
+       Con  esta  opci¢n se asignan  un  nombre  a  su
+       proyecto.  No es necesario el uso de  extensi¢n
+       y  en  caso  de que sea especificada alguna  se
+       ignorar   tom ndose por defecto las extensiones
+       ASM  para  el  fichero fuente  y  HEX  para  el
+       ejecutable  en  formato Intel generado  por  el
+       ensamblador.
+
+       En caso de que quiera recuperar un proyecto an-
+       teriormente guardado puede dejar en  blanco  el
+       cuadro de di logo  y pulsar  ENTER. A continua-
+       ci¢n se le presentar  un men£ en el  que  podr 
+       seleccionarlo.   B£squelo  primero   entre  las
+       p ginas del men£ co RePag y AvPag y una vez lo-
+       calizado pulse ENTER para seleccionarlo  dentro
+       de una p gina.
+
+
+     2)Llamar al editor:
+       
+
+       La  funci¢n de esta opci¢n es llamar al  editor
+       de   textos   que  se  haya  especificado   con
+       anterioridad  el en fichero SIMUPIC.CFG  en  su
+       l¡nea  " Editor = c:\path\prog.exe ".
+       
+       Con  esta  opci¢n  el usuario podr   editar  el
+       c¢digo  fuente o hacer cambios en  el  programa
+       seg£n sea necesario.
+       
+     3)Ensamblar:
+       
+    
+       Mediante  esta  opci¢n se llama al  ensamblador
+       especificado   en   la   l¡nea   del    fichero
+       SIMUPIC.CFG   "Ensamblador = c:\path\prog.exe".
+       
+     4)Cargar fichero HEX:
+       
+
+       Carga  en memoria de programa el fichero  *.HEX
+       en formato INTEL generado por el ensamblador.
+       
+     5)    Opciones de simulaci¢n:
+      
+                                                           
+
+      Esta men£ da paso al siguiente:
+      
+       1) Reset en el PIC:
+       
+       
+       Genera  en  el  pic  el  reset  producido  por  MCLR
+       (fuente  externa de reset). El PCL pasa a  valer  0.
+       En  caso  de existir breakpoints, estos se mantienen
+       tras el reset.
+       
+       2) Poner a 0 contadores:
+       
+       
+       Esta  opci¢n  pone  a  cero  tanto  el  contador  de
+       instrucciones como el de tiempos . El  uso  de  esta
+       opci¢n  resulta  interesante a  la  hora  de  querer
+       contabilizar  el  tiempo  empleado  por   un   grupo
+       espec¡fico de instrucciones.
+       
+       3) Examinar programa:
+       
+       
+       Mediante esta opci¢n es posible moverse al lo  largo
+       del   programa   para  examinarlo,   establecer   un
+       Breakpoint  o  asignar  el PCL  a  una   determinada
+       posici¢n de la  memoria de programa.
+       
+       Al  seleccionar esta opci¢n aparecer n  en  pantalla
+       una  ventana  de ayuda en la que se especifican  las
+       teclas para realizar cada una de esta  acciones.
+       
+       Todos  los  cambios realizados se  pueden  descartar
+       pulsando Escape o mantener pulsando Intro.
+       
+                                                           
+                                                           
+       
+       4) Par metros de simulaci¢n:
+       
+       
+       Permite  especificar la frecuencia, tipo  de  reloj,
+       estado  del  WatchDog  (activo  -  inactivo)  y   la
+       duraci¢n del periodo de Sleep.  Tambi‚n  sirve  para
+       especificar el tipo de  modelo  de  memoria  que  se
+       utilizar : "F" para 16F84 (con 68 registros de  pro-
+       p¢sito general) o "C" para 16C84 (con 36 registros).
+
+       Debido  a  lo  lento  de  la simulaci¢n  es  posible
+       alterar  la duraci¢n del periodo de sleep  antes  de
+       que se produzca un reset por WatchDog.
+       
+       Es  posible indicar el n£mero de instrucciones (NOP)
+       que  se ejecutar n antes de que se produzca el reset
+       o  indicar "WD" para que la duraci¢n  del sleep  sea
+       la misma que en un PIC real.
+       
+       En  esta opci¢n tambi‚n es posible cambiar el  tipos
+       de oscilador:
+       
+       Oscilador  RC  :  Es  un  oscilador  de  bajo  coste
+       compuesto  por un condensador y una resistencia.  Es
+       muy  poco   preciso por lo que nos es aconsejable  a
+       la hora de programar temporizaciones.
+       
+       Oscilador   HS   :   Oscilador  de  alta   velocidad
+       compuesto   por  un  cristal  de  cuarzo   .   Puede
+       utilizarse con frecuencias en el rango de 8Mhz a  20
+       Mhz.
+       
+       Oscilador XT : Oscilador standard compuesto  por  un
+       cristal  de cuarzo. Puede utilizarse con frecuencias
+       de 100 Khz a 4 Mhz.
+       
+       Oscilador  LP: Oscilador  de bajo consumo  compuesto
+       por  un cristal de cuarzo. Frecuencias desde 33Hz  a
+       200 Khz.
+       
+         
+
+
+
+     6) Ejecutar:
+       
+
+       Ejecuta  el  archivo HEX cargado en la  memoria
+       de  programa del PIC desde la posici¢n   actual
+       del  PCL  hasta  que se encuentre un Breakpoint
+       o  se  pulse la tecla ESC (tecla de   final  de
+       ejecuci¢n) .
+       
+       Durante  la  ejecuci¢n del programa  todos  los
+       registros    (ver   opci¢n    8,     visualizar
+       registros)  se van actualizando en tiempo  real
+       al  igual  que  los  contadores  de  tiempo   e
+       instrucciones.
+       
+       Durante   la   ejecuci¢n  tambi‚n  es   posible
+       estimular  mediante el teclado aquellas  l¡neas
+       de   las   puertas  A  y  B  que   hayan   sido
+       configuradas como entradas :
+       
+         F1-F5  : Voltean el  valor actual de los bits  0-4
+         de la puerta A.
+         
+         Shift+F1 - Shift+F8 :Voltean el  valor actual   de
+         los bits 0-7 de la puerta B.
+         
+     7) Trazar:
+       
+
+       Ejecuta  la instrucci¢n apuntada en ese momento
+       por el PCL.
+       
+       Durante  el trazado el teclado no funciona  por
+       lo  que  no  es posible estimular las  entradas
+       mediante las teclas de funci¢n. Sin embargo  se
+       puede  realizar esta misma funci¢n de estimular
+       las  entradas  alterando  los  valores  de  los
+       registros  5  y  6  (  puerta  A  y  puerta   B
+       respectivamente  ) mediante la  opci¢n  alterar
+       registros .  (ver opci¢n 9 ).
+       
+       En  caso  de encontrarse durante el trazado  de
+       un   programa  con  un  Breakpoint  este   ser 
+       ignorado por el programa.
+       
+       
+       
+    8) Visualizar Registros:
+    
+
+                                                           
+
+       Mediante  esta  opci¢n es posible visualizar  en  la
+       ventana  de visualizaci¢n de registros aquellos  que
+       se  desee  ,   ya  sean   registros  especiales,  de
+       prop¢sito  general  o los de la  memoria  EEPROM  de
+       datos   que   incluye  el  Pic16c84.   El   Pcl   es
+       visualizado por defecto .
+       
+       Esta opci¢n incluye la ventaja de poder escribir  la
+       etiqueta   con  la  que  referirse   al     registro
+       visualizado con lo que se hace m s f cil al  usuario
+       la  comprensi¢n del  programa  durante el trazado  o
+       la ejecuci¢n del mismo.
+       
+       Como  ya  se  ha  explicado  con  anterioridad,  los
+       registros      visualizados     son     actualizados
+       din micamente   tanto  durante  la  ejecuci¢n   como
+       durante el trazado.
+       
+       ( ver Selecci¢n de registros )
+       
+    
+     9) Alterar Registros:
+       
+
+       Altera  el  valor en binario de  los  registros
+       visualizados en la ventana de visualizaci¢n  de
+       registros.
+       
+       ( Ver selecci¢n de registros )
+       
+
+    Selecci¢n de registros :
+    
+       Para  seleccionar  un  registro,  ya  sea  para
+       visualizarlo  o  alterarlo se debe  seleccionar
+       entre una de las opciones disponibles:
+       
+       ú   PCL: Program counter.
+          
+       ú   TrisA, TrisB: Configuraciones de entrada salida para
+          las puertas A y B.
+          
+       ú   Option: Registro option del PIC (dir 81h del banco de
+          datos).
+          
+       ú   EEPROM : Una direcci¢n de la memoria EEPROM de datos
+          que incorpora el Pic16c84.
+          
+       ú   Mediante direcci¢n hexadecimal.
+          
+       A   continuaci¢n  se  puede  definir  una   etiqueta
+       descriptiva  de  8  caracteres  para  facilitar   la
+       identificaci¢n del registro.
+       
+
+    Men£ Salir al DOS:
+    
+       Da  la  posibilidad de salir  temporalmente  al
+       DOS  o  bien finalizar la ejecuci¢n de  Simupic
+       84.  En  caso de salir temporalmente, tecleando
+       EXIT  en la l¡nea de comandos de DOS se retorna
+       al  programa  en el punto en el  que  se  hab¡a
+       dejado.
+       
+    Uso de la Ayuda:
+    
+       Pulsando la tecla de funci¢n F1 se accede a  la
+       ayuda  de la funci¢n que se est‚ realizando  en
+       ese momento.
+       
+       
+       
+
+RESTO DE VENTANAS
+
+
+
+     ú   Ventana de visi¢n externa:
+       
+       En  ella  se  nos muestra el chip gr ficamente.
+       Las  l¡neas de E/S configuradas como salida  se
+       muestras  de  color   rojo  mientras  que   las
+       configuradas como entradas en color verde.
+       
+       El  valor (0-1) y tipo (E/S) de estas l¡neas se
+       actualiza din micamente tanto durante la ejecu-
+       ci¢n como durante el trazado del programa.
+  
+     ú   Ventana de visualizaci¢n de registros :
+       
+       De  color azul y situada en la parte derecha de
+       la   pantalla   .  En  ella  se  muestran   los
+       registros  que  se ha deseado  visualizar.  Por
+       defecto el PCL siempre se encuentra visible.
+       
+     ú   Ventana de memoria ROM:
+       
+       En  esta ventana se muestra el contenido de  la
+       memoria  de  programa del Pic de  la  siguiente
+       informaci¢n por l¡nea:
+       
+        1.  Direcci¢n de memoria.
+        2.  C¢digo de operaci¢n en binario.
+        3.  Mnem¢nico de la instrucci¢n.
+
+     ú   Ventana de contadores:
+       
+       En  esta  ventana se muestran  el  contador  de
+       tiempos   e  instrucciones  que  como   se   ha
+       explicado  con anterioridad ( ver  opciones  de
+       simulaci¢n  |   poner  a  cero  contadores)  se
+       pueden  volver  a  poner a  cero  en  cualquier
+       momento.
+       
+                             
+                             
+
+
+NOTAS FINALES :
+
+Este  programa ha sido desarrollado por dos estudiantes  de
+la  facultad de inform tica de la Universidad de Deusto que
+actualmente  siguen trabajando en ‚l. Para cualquier  duda,
+consulta  o  notificaci¢n de errores en  el  programa,  por
+favor, env¡enos un mensaje a las siguientes direcciones :
+
+
+
+Gorka Elexgaray           elexga@arrakis.es
+                          o bien 1elexgar@rigel.deusto.es
+
+Jagoba Villate            2villate@rigel.deusto.es
